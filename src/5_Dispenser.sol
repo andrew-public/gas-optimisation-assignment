@@ -2,11 +2,15 @@
 pragma solidity 0.8.13;
 
 contract Dispenser {
-    address[3] public receivers;
-    uint256 public startTime;
+    address immutable receiver1;
+    address immutable receiver2;
+    address immutable receiver3;
+    uint256 immutable startTime;
 
     constructor(address[3] memory _receivers) payable {
-        receivers = _receivers;
+        receiver1 = _receivers[0];
+        receiver2 = _receivers[1];
+        receiver3 = _receivers[2];
         startTime = block.timestamp;
     }
 
@@ -17,8 +21,8 @@ contract Dispenser {
         );
 
         uint amount = address(this).balance / 3;
-        payable(receivers[0]).transfer(amount);
-        payable(receivers[1]).transfer(amount);
-        payable(receivers[2]).transfer(amount);
+        payable(receiver1).transfer(amount);
+        payable(receiver2).transfer(amount);
+        payable(receiver3).transfer(amount);
     }
 }
