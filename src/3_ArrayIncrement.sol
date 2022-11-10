@@ -5,7 +5,8 @@ contract ArrayIncrement {
 
     function incrementBy(uint256[] calldata arr) external {
         uint256 tmpCounter = 0;
-        for (uint256 idx = 0; idx < arr.length; ) {
+        uint arrayLength = arr.length;
+        for (uint256 idx = 0; idx < arrayLength; ) {
             tmpCounter += arr[idx];
             unchecked {
                 idx++;
